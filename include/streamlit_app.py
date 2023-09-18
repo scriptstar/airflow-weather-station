@@ -20,7 +20,7 @@ hot_day = uv.HOT_DAY
 
 
 duck_db_instance_path = (
-    "/app/include/dwh"  # when changing this value also change the db name in .env
+    "include/dwh"  # when changing this value also change the db name in .env
 )
 global_temp_col = "Global"
 metric_col_name = "Average Surface Temperature"
@@ -68,7 +68,8 @@ def get_global_surface_temp_data(db=duck_db_instance_path):
     cursor.close()
 
     df = pd.DataFrame(
-        global_surface_temp_data, columns=[x[0] for x in global_surface_temp_col_names]
+        global_surface_temp_data, columns=[x[0]
+                                           for x in global_surface_temp_col_names]
     )
 
     return df
@@ -86,7 +87,8 @@ def get_historic_weather_info(db=duck_db_instance_path):
     ).fetchall()
 
     df = pd.DataFrame(
-        historical_weather_data, columns=[x[0] for x in historical_weather_col_names]
+        historical_weather_data, columns=[x[0]
+                                          for x in historical_weather_col_names]
     )
     cursor.close()
 
@@ -106,7 +108,8 @@ def get_hot_days(db=duck_db_instance_path):
     hot_days_data = cursor.execute(
         f"""SELECT * FROM {c.REPORT_HOT_DAYS_TABLE_NAME};"""
     ).fetchall()
-    df = pd.DataFrame(hot_days_data, columns=[x[0] for x in hot_days_col_names])
+    df = pd.DataFrame(hot_days_data, columns=[
+                      x[0] for x in hot_days_col_names])
     return df
 
 
@@ -287,7 +290,6 @@ if c.REPORT_HISTORICAL_WEATHER_TABLE_NAME in tables:
             """
         )
 
-
     # define columns
     col1, col2 = st.columns([3, 2])
 
@@ -321,8 +323,9 @@ if c.REPORT_HISTORICAL_WEATHER_TABLE_NAME in tables:
             historical_weather_table.city == grain
         ]
 
-    st.line_chart(selected_city_historical_weather, x="Year", y="Heat days per year")
-    
+    st.line_chart(selected_city_historical_weather,
+                  x="Year", y="Heat days per year")
+
 
 # ------------------------ #
 # Hottest day in birthyear #
@@ -351,7 +354,8 @@ else:
 if c.REPORT_HISTORICAL_WEATHER_TABLE_NAME in tables and len(
     historical_weather_table.city.unique()
 ) == len(hot_days_table):
-    st.success(f"Congratulations, {user_name}, on finishing this tutorial!", icon="🎉")
+    st.success(
+        f"Congratulations, {user_name}, on finishing this tutorial!", icon="🎉")
 
 
 # ------- #
