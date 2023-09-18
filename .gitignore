@@ -5,5 +5,3 @@ airflow_settings.yaml
 astro
 __pycache__
 DEBUG.py
-include/dwh
-include/dwh.wal
