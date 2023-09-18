@@ -20,7 +20,7 @@ hot_day = uv.HOT_DAY
 
 
 duck_db_instance_path = (
-    "/app/include/dwh"  # when changing this value also change the db name in .env
+    "include/dwh"  # when changing this value also change the db name in .env
 )
 global_temp_col = "Global"
 metric_col_name = "Average Surface Temperature"
