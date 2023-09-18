@@ -20,7 +20,7 @@ hot_day = uv.HOT_DAY
 
 
 duck_db_instance_path = (
-    "include/dwh"  # when changing this value also change the db name in .env
+    "/app/include/dwh"  # when changing this value also change the db name in .env
 )
 global_temp_col = "Global"
 metric_col_name = "Average Surface Temperature"
@@ -354,8 +354,7 @@ else:
 if c.REPORT_HISTORICAL_WEATHER_TABLE_NAME in tables and len(
     historical_weather_table.city.unique()
 ) == len(hot_days_table):
-    st.success(
-        f"Congratulations, {user_name}, on finishing this tutorial!", icon="🎉")
+    st.success(f"Congratulations, {user_name}", icon="🎉")
 
 
 # ------- #
